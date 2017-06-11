@@ -7,7 +7,8 @@
 [![Dependencies][dependencies-image]][dependencies-url]
 [![DevDependencies][devdependencies-image]][devdependencies-url]
 
-Simple utility that converts manipulate \t \b \r characters and flattens text
+Simple utility that manipulates \t \b \r characters and converts it to space characters, or ignores them and results single line text.
+Very useful for pretty printing support. 
 
 
 ## Installation
@@ -27,7 +28,10 @@ let text =
     '\t\tccc\n'+
     '\bddd\r'+
     'eee';
-console.log(flattenText(text));
+console.log(flattenText(text, {
+  indent: 2, // default
+  noWrap: false, // default
+}));
 ```
 Result output
 ```
@@ -36,6 +40,23 @@ aaa
       ccc
     ddd
 eee
+```
+
+```javascript
+const flattenText = require('./');
+let text =
+    'select \n\t(\n\t'+
+    'name,\n'+
+    'address\n'+
+    '\b) from x \r'+
+    'where ...';
+console.log(flattenText(text, {
+  noWrap: true, // default
+}));
+```
+Result output
+```
+select (name, address) from x where ...
 ```
 
 ## Node Compatibility

@@ -4,7 +4,7 @@ const assert = require('assert'),
 
 describe('Flatten text', function() {
 
-  it('text1', function(done) {
+  it('test default options', function(done) {
     let text =
         'aaa\n' +
         '\tbbb\n' +
@@ -19,6 +19,52 @@ describe('Flatten text', function() {
         '      ddd\n' +
         '    eee\n' +
         'fff');
+    done();
+  });
+
+  it('test indent', function(done) {
+    let text =
+        'aaa\n' +
+        '\tbbb\n' +
+        'ccc\n' +
+        '\t\tddd\n' +
+        '\beee\r' +
+        'fff';
+    text = flattenText(text, {
+      indent: 4
+    });
+    assert.equal(text, 'aaa\n' +
+        '    bbb\n' +
+        '    ccc\n' +
+        '            ddd\n' +
+        '        eee\n' +
+        'fff');
+    done();
+  });
+
+  it('test noWrap', function(done) {
+    let text =
+        'aaa\n' +
+        '\tbbb\n' +
+        'ccc\n' +
+        '\t\tddd\n' +
+        '\beee\r' +
+        'fff';
+    text = flattenText(text, {noWrap: true});
+    assert.equal(text, 'aaa bbb ccc ddd eee fff');
+    done();
+  });
+
+  it('test noWrap, no spacing after parentheses', function(done) {
+    let text =
+        'aaa (\n' +
+        '\tbbb\n' +
+        'ccc\n' +
+        '\t\tddd\n' +
+        '\beee\r' +
+        ') fff';
+    text = flattenText(text, {noWrap: true});
+    assert.equal(text, 'aaa (bbb ccc ddd eee) fff');
     done();
   });
 
