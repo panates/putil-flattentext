@@ -5,7 +5,7 @@ const assert = require('assert'),
 describe('Flatten text', function() {
 
   it('test default options', function(done) {
-    let text =
+    var text =
         'aaa\n' +
         '\tbbb\n' +
         'ccc\n' +
@@ -23,7 +23,7 @@ describe('Flatten text', function() {
   });
 
   it('test indent', function(done) {
-    let text =
+    var text =
         'aaa\n' +
         '\tbbb\n' +
         'ccc\n' +
@@ -43,7 +43,7 @@ describe('Flatten text', function() {
   });
 
   it('test noWrap', function(done) {
-    let text =
+    var text =
         'aaa\n' +
         '\tbbb\n' +
         'ccc\n' +
@@ -56,7 +56,7 @@ describe('Flatten text', function() {
   });
 
   it('test noWrap, no spacing after parentheses', function(done) {
-    let text =
+    var text =
         'aaa (\n' +
         '\tbbb\n' +
         'ccc\n' +
