@@ -27,7 +27,7 @@ describe('Flatten text', function() {
         'aaa\n' +
         '\tbbb\n' +
         'ccc\n' +
-        '\t\tddd\n' +
+        ' \t\tddd\n' +
         '\beee\r' +
         'fff';
     text = flattenText(text, {
@@ -36,7 +36,7 @@ describe('Flatten text', function() {
     assert.equal(text, 'aaa\n' +
         '    bbb\n' +
         '    ccc\n' +
-        '            ddd\n' +
+        '             ddd\n' +
         '        eee\n' +
         'fff');
     done();
